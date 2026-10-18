@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYUMBA FINE - Find Rental Houses in Nairobi</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-house-chimney"></i> NYUMBA FINE
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="switchTab('home')">Home</a></li>
+                <li><a href="#" onclick="switchTab('catalog')">Find Houses</a></li>
+                <li><a href="#" onclick="switchTab('favorites')">Favorites <span id="fav-count">0</span></a></li>
+                <li><a href="#" onclick="switchTab('bookings')">Bookings</a></li>
+                <li><a href="#" onclick="switchTab('contact')">Contact Us</a></li>
+                <li><a href="#" class="btn-login" onclick="openLoginModal()">Login / Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main>
+        <!-- HOME TAB -->
+        <section id="tab-home" class="tab-content active">
+            <div class="hero">
+                <h1>Find Your Dream Rental House in Nairobi</h1>
+                <p>Browse verified listings with photos, accurate pricing, and instant WhatsApp booking.</p>
+                <div class="hero-search">
+                    <select id="hero-area">
+                        <option value="">Select Nairobi Area...</option>
+                        <option value="Westlands">Westlands</option>
+                        <option value="Kilimani">Kilimani</option>
+                        <option value="Kasarani">Kasarani</option>
+                        <option value="Embakasi">Embakasi</option>
+                        <option value="CBD">CBD</option>
+                    </select>
+                    <button onclick="searchFromHero()">Search Houses</button>
+                </div>
+            </div>
+            <div class="container">
+                <h2>Featured Properties</h2>
+                <div id="featured-grid" class="property-grid"></div>
+            </div>
+        </section>
+
+        <!-- CATALOG / FIND HOUSES TAB -->
+        <section id="tab-catalog" class="tab-content">
+            <div class="catalog-layout">
+                <!-- Filters Sidebar -->
+                <aside class="filters-sidebar">
+                    <h3>Filter Houses</h3>
+                    <div class="filter-group">
+                        <label>Area</label>
+                        <select id="filter-area" onchange="applyFilters()">
+                            <option value="">All Areas</option>
+                            <option value="Westlands">Westlands</option>
+                            <option value="Kilimani">Kilimani</option>
+                            <option value="Kasarani">Kasarani</option>
+                            <option value="Embakasi">Embakasi</option>
+                            <option value="CBD">CBD</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Property Type</label>
+                        <select id="filter-type" onchange="applyFilters()">
+                            <option value="">All Types</option>
+                            <option value="Bedsitter">Bedsitter</option>
+                            <option value="1-Bedroom">1-Bedroom</option>
+                            <option value="2-Bedroom">2-Bedroom</option>
+                            <option value="3-Bedroom">3-Bedroom</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Max Monthly Rent: <span id="rent-val">Ksh 100,000</span></label>
+                        <input type="range" id="filter-rent" min="10000" max="150000" step="5000" value="150000" oninput="applyFilters()">
+                    </div>
+                </aside>
+                <!-- House Listings -->
+                <div class="catalog-content">
+                    <h2>Available Listings</h2>
+                    <div id="catalog-grid" class="property-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAVORITES TAB -->
+        <section id="tab-favorites" class="tab-content">
+            <div class="container">
+                <h2>Saved Favorite Properties</h2>
+                <div id="favorites-grid" class="property-grid"></div>
+            </div>
+        </section>
+
+        <!-- BOOKINGS TAB -->
+        <section id="tab-bookings" class="tab-content">
+            <div class="container">
+                <h2>Your Viewing Bookings</h2>
+                <div id="bookings-list" class="bookings-container"></div>
+            </div>
+        </section>
+
+        <!-- CONTACT US TAB -->
+        <section id="tab-contact" class="tab-content">
+            <div class="container contact-container">
+                <h2>Contact NYUMBA FINE</h2>
+                <p><i class="fa-solid fa-phone"></i> Phone: +254 748756734</p>
+                <p><i class="fa-brands fa-whatsapp"></i> WhatsApp: +254 799618374</p>
+                <form onsubmit="handleContact(event)">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message..." rows="5" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Property Details Modal -->
+    <div id="property-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 NYUMBA FINE — All Rights Reserved</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
